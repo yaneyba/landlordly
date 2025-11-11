@@ -8,6 +8,8 @@ export const LandingPage = () => {
   const { isAuthenticated } = useAuth();
   const [feedback, setFeedback] = useState('');
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [email, setEmail] = useState('');
+  const [signupSubmitted, setSignupSubmitted] = useState(false);
 
   useEffect(() => {
     // Redirect to dashboard if already authenticated
@@ -15,6 +17,18 @@ export const LandingPage = () => {
       navigate('/dashboard');
     }
   }, [isAuthenticated, navigate]);
+
+  const handleSignupSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim() && email.includes('@')) {
+      // For now, just show success message
+      // In production, this would send to a backend endpoint
+      console.log('Early access signup:', email);
+      setSignupSubmitted(true);
+      setEmail('');
+      setTimeout(() => setSignupSubmitted(false), 5000);
+    }
+  };
 
   const handleFeedbackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +68,24 @@ export const LandingPage = () => {
             <p className="hero-subtitle">
               The fast, friendly platform for small landlords managing up to 20 doors—no more spreadsheets or stress.
             </p>
+            <form onSubmit={handleSignupSubmit} className="early-access-form">
+              <input
+                type="email"
+                className="early-access-input"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button type="submit" className="btn btn-primary early-access-button">
+                Get Early Access
+              </button>
+            </form>
+            {signupSubmitted && (
+              <div className="signup-success">
+                Thanks! We'll be in touch soon.
+              </div>
+            )}
             <div className="hero-buttons">
               <button
                 className="btn btn-primary"
