@@ -71,110 +71,227 @@ export const Payments = () => {
       {overduePayments.length > 0 && (
         <div className="payments-section">
           <h2 className="section-title critical">Overdue Payments</h2>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Tenant</th>
-                <th>Amount</th>
-                <th>Due Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {overduePayments.map((payment) => (
-                <tr key={payment.id}>
-                  <td>{getTenantName(payment.tenantId)}</td>
-                  <td className="amount-cell">${payment.amount.toLocaleString()}</td>
-                  <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
-                  <td>
-                    <span className="status-badge status-overdue">Overdue</span>
-                  </td>
-                  <td>
-                    <button
-                      className="btn-small btn-primary"
-                      onClick={() => handleMarkAsPaid(payment)}
-                    >
-                      Mark as Paid
-                    </button>
-                  </td>
+
+          {/* Desktop Table View */}
+          <div className="payments-table-view">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Tenant</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {overduePayments.map((payment) => (
+                  <tr key={payment.id}>
+                    <td>{getTenantName(payment.tenantId)}</td>
+                    <td className="amount-cell">${payment.amount.toLocaleString()}</td>
+                    <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
+                    <td>
+                      <span className="status-badge status-overdue">Overdue</span>
+                    </td>
+                    <td>
+                      <button
+                        className="btn-small btn-primary"
+                        onClick={() => handleMarkAsPaid(payment)}
+                      >
+                        Mark as Paid
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="payments-card-view">
+            {overduePayments.map((payment) => (
+              <div key={payment.id} className="payment-card payment-card-overdue">
+                <div className="payment-card-header">
+                  <div>
+                    <h3>{getTenantName(payment.tenantId)}</h3>
+                    <span className="status-badge status-overdue">Overdue</span>
+                  </div>
+                  <div className="payment-card-amount">
+                    ${payment.amount.toLocaleString()}
+                  </div>
+                </div>
+                <div className="payment-card-details">
+                  <div className="payment-detail-row">
+                    <span className="payment-detail-label">Due Date</span>
+                    <span className="payment-detail-value">
+                      {new Date(payment.dueDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+                <div className="payment-card-actions">
+                  <button
+                    className="btn-primary"
+                    onClick={() => handleMarkAsPaid(payment)}
+                  >
+                    Mark as Paid
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
       {pendingPayments.length > 0 && (
         <div className="payments-section">
           <h2 className="section-title">Pending Payments</h2>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Tenant</th>
-                <th>Amount</th>
-                <th>Due Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pendingPayments.map((payment) => (
-                <tr key={payment.id}>
-                  <td>{getTenantName(payment.tenantId)}</td>
-                  <td className="amount-cell">${payment.amount.toLocaleString()}</td>
-                  <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
-                  <td>
-                    <span className="status-badge status-pending">Pending</span>
-                  </td>
-                  <td>
-                    <button
-                      className="btn-small btn-primary"
-                      onClick={() => handleMarkAsPaid(payment)}
-                    >
-                      Mark as Paid
-                    </button>
-                  </td>
+
+          {/* Desktop Table View */}
+          <div className="payments-table-view">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Tenant</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {pendingPayments.map((payment) => (
+                  <tr key={payment.id}>
+                    <td>{getTenantName(payment.tenantId)}</td>
+                    <td className="amount-cell">${payment.amount.toLocaleString()}</td>
+                    <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
+                    <td>
+                      <span className="status-badge status-pending">Pending</span>
+                    </td>
+                    <td>
+                      <button
+                        className="btn-small btn-primary"
+                        onClick={() => handleMarkAsPaid(payment)}
+                      >
+                        Mark as Paid
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="payments-card-view">
+            {pendingPayments.map((payment) => (
+              <div key={payment.id} className="payment-card">
+                <div className="payment-card-header">
+                  <div>
+                    <h3>{getTenantName(payment.tenantId)}</h3>
+                    <span className="status-badge status-pending">Pending</span>
+                  </div>
+                  <div className="payment-card-amount">
+                    ${payment.amount.toLocaleString()}
+                  </div>
+                </div>
+                <div className="payment-card-details">
+                  <div className="payment-detail-row">
+                    <span className="payment-detail-label">Due Date</span>
+                    <span className="payment-detail-value">
+                      {new Date(payment.dueDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+                <div className="payment-card-actions">
+                  <button
+                    className="btn-primary"
+                    onClick={() => handleMarkAsPaid(payment)}
+                  >
+                    Mark as Paid
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
       {paidPayments.length > 0 && (
         <div className="payments-section">
           <h2 className="section-title">Recent Paid Payments</h2>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Tenant</th>
-                <th>Amount</th>
-                <th>Due Date</th>
-                <th>Paid Date</th>
-                <th>Method</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paidPayments.slice(0, 10).map((payment) => (
-                <tr key={payment.id}>
-                  <td>{getTenantName(payment.tenantId)}</td>
-                  <td className="amount-cell">${payment.amount.toLocaleString()}</td>
-                  <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
-                  <td>
-                    {payment.paidDate
-                      ? new Date(payment.paidDate).toLocaleDateString()
-                      : '-'}
-                  </td>
-                  <td>{payment.paymentMethod || '-'}</td>
-                  <td>
-                    <span className="status-badge status-paid">Paid</span>
-                  </td>
+
+          {/* Desktop Table View */}
+          <div className="payments-table-view">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Tenant</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Paid Date</th>
+                  <th>Method</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {paidPayments.slice(0, 10).map((payment) => (
+                  <tr key={payment.id}>
+                    <td>{getTenantName(payment.tenantId)}</td>
+                    <td className="amount-cell">${payment.amount.toLocaleString()}</td>
+                    <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
+                    <td>
+                      {payment.paidDate
+                        ? new Date(payment.paidDate).toLocaleDateString()
+                        : '-'}
+                    </td>
+                    <td>{payment.paymentMethod || '-'}</td>
+                    <td>
+                      <span className="status-badge status-paid">Paid</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="payments-card-view">
+            {paidPayments.slice(0, 10).map((payment) => (
+              <div key={payment.id} className="payment-card payment-card-paid">
+                <div className="payment-card-header">
+                  <div>
+                    <h3>{getTenantName(payment.tenantId)}</h3>
+                    <span className="status-badge status-paid">Paid</span>
+                  </div>
+                  <div className="payment-card-amount">
+                    ${payment.amount.toLocaleString()}
+                  </div>
+                </div>
+                <div className="payment-card-details">
+                  <div className="payment-detail-row">
+                    <span className="payment-detail-label">Due Date</span>
+                    <span className="payment-detail-value">
+                      {new Date(payment.dueDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div className="payment-detail-row">
+                    <span className="payment-detail-label">Paid Date</span>
+                    <span className="payment-detail-value">
+                      {payment.paidDate
+                        ? new Date(payment.paidDate).toLocaleDateString()
+                        : '-'}
+                    </span>
+                  </div>
+                  <div className="payment-detail-row">
+                    <span className="payment-detail-label">Method</span>
+                    <span className="payment-detail-value">
+                      {payment.paymentMethod || '-'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
