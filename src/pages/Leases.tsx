@@ -65,36 +65,76 @@ export const Leases = () => {
           <p>Create lease agreements for your properties and tenants</p>
         </div>
       ) : (
-        <div className="leases-list">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Tenant</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Monthly Rent</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leases.map((lease) => (
-                <tr key={lease.id}>
-                  <td>{getPropertyAddress(lease.propertyId)}</td>
-                  <td>{getTenantName(lease.tenantId)}</td>
-                  <td>{new Date(lease.startDate).toLocaleDateString()}</td>
-                  <td>{new Date(lease.endDate).toLocaleDateString()}</td>
-                  <td>${lease.monthlyRent.toLocaleString()}</td>
-                  <td>
-                    <span className={`status-badge status-${lease.status}`}>
-                      {lease.status}
-                    </span>
-                  </td>
+        <>
+          {/* Desktop Table View */}
+          <div className="leases-table-view">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Tenant</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Monthly Rent</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {leases.map((lease) => (
+                  <tr key={lease.id}>
+                    <td>{getPropertyAddress(lease.propertyId)}</td>
+                    <td>{getTenantName(lease.tenantId)}</td>
+                    <td>{new Date(lease.startDate).toLocaleDateString()}</td>
+                    <td>{new Date(lease.endDate).toLocaleDateString()}</td>
+                    <td className="amount-cell">${lease.monthlyRent.toLocaleString()}</td>
+                    <td>
+                      <span className={`status-badge status-${lease.status}`}>
+                        {lease.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="leases-card-view">
+            {leases.map((lease) => (
+              <div key={lease.id} className="lease-card">
+                <div className="lease-card-header">
+                  <div>
+                    <h3>{getPropertyAddress(lease.propertyId)}</h3>
+                    <p className="lease-tenant">{getTenantName(lease.tenantId)}</p>
+                  </div>
+                  <span className={`status-badge status-${lease.status}`}>
+                    {lease.status}
+                  </span>
+                </div>
+                <div className="lease-card-details">
+                  <div className="lease-detail-row">
+                    <span className="lease-detail-label">Start Date</span>
+                    <span className="lease-detail-value">
+                      {new Date(lease.startDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div className="lease-detail-row">
+                    <span className="lease-detail-label">End Date</span>
+                    <span className="lease-detail-value">
+                      {new Date(lease.endDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div className="lease-detail-row">
+                    <span className="lease-detail-label">Monthly Rent</span>
+                    <span className="lease-detail-value lease-rent">
+                      ${lease.monthlyRent.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

@@ -450,6 +450,160 @@ body {
   gap: 0.5rem;
 }
 
+/* Leases & Payments - View Toggles */
+.leases-card-view,
+.payments-card-view {
+  display: none;
+}
+
+.leases-table-view,
+.payments-table-view {
+  display: block;
+}
+
+/* Lease Cards (Mobile) */
+.lease-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  margin-bottom: 1rem;
+}
+
+.lease-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lease-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.lease-card-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.lease-tenant {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.lease-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lease-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.lease-detail-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.lease-detail-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.lease-rent {
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+/* Payment Cards (Mobile) */
+.payment-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.payment-card-overdue {
+  border-left-color: var(--danger-color);
+}
+
+.payment-card-paid {
+  border-left-color: var(--success-color);
+}
+
+.payment-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.payment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.payment-card-header > div:first-child {
+  flex: 1;
+}
+
+.payment-card-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.payment-card-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.payment-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.payment-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.payment-detail-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.payment-detail-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.payment-card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.payment-card-actions button {
+  flex: 1;
+}
+
 /* Data Tables */
 .data-table {
   width: 100%;
@@ -1046,7 +1200,18 @@ button:disabled {
     font-size: 1.25rem;
   }
 
-  /* Tables - Add horizontal scroll */
+  /* Switch to card views on mobile */
+  .leases-table-view,
+  .payments-table-view {
+    display: none;
+  }
+
+  .leases-card-view,
+  .payments-card-view {
+    display: block;
+  }
+
+  /* Tables - Add horizontal scroll (for other tables) */
   .data-table {
     display: block;
     overflow-x: auto;
@@ -1062,6 +1227,28 @@ button:disabled {
   .data-table td {
     padding: 0.75rem;
     font-size: 0.813rem;
+  }
+
+  /* Lease card mobile adjustments */
+  .lease-card {
+    padding: 1.25rem;
+  }
+
+  .lease-card-header h3 {
+    font-size: 1rem;
+  }
+
+  /* Payment card mobile adjustments */
+  .payment-card {
+    padding: 1.25rem;
+  }
+
+  .payment-card-header h3 {
+    font-size: 1rem;
+  }
+
+  .payment-card-amount {
+    font-size: 1.25rem;
   }
 
   /* Buttons */
@@ -1111,6 +1298,12 @@ button:disabled {
 
   .subtitle {
     font-size: 0.75rem;
+  }
+
+  /* Status badge improvements */
+  .status-badge {
+    font-size: 0.688rem;
+    padding: 0.188rem 0.625rem;
   }
 
   /* Stat cards */
@@ -1306,5 +1499,62 @@ button:disabled {
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+  }
+
+  /* Smaller lease cards */
+  .lease-card {
+    padding: 1rem;
+  }
+
+  .lease-card-header h3 {
+    font-size: 0.938rem;
+  }
+
+  .lease-tenant {
+    font-size: 0.75rem;
+  }
+
+  .lease-detail-row {
+    font-size: 0.75rem;
+  }
+
+  .lease-rent {
+    font-size: 0.938rem;
+  }
+
+  /* Smaller payment cards */
+  .payment-card {
+    padding: 1rem;
+  }
+
+  .payment-card-header h3 {
+    font-size: 0.938rem;
+  }
+
+  .payment-card-amount {
+    font-size: 1.125rem;
+  }
+
+  .payment-detail-row {
+    font-size: 0.75rem;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+  .modal {
+    max-height: 95vh;
+  }
+
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .sidebar {
+    padding: 1rem 0;
+  }
+
+  .sidebar-header {
+    padding: 0 1rem 1rem;
   }
 }
