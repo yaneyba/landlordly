@@ -212,6 +212,56 @@
   line-height: 1.6;
 }
 
+/* Value Proposition Section */
+.value-prop-section {
+  background: #f7fafc;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.value-prop-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.value-prop-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1a202c;
+}
+
+.value-prop-text {
+  font-size: 1.125rem;
+  color: #4a5568;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.trust-signals {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trust-icon {
+  font-size: 2rem;
+}
+
+.trust-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
 /* CTA Section */
 .cta-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -235,6 +285,77 @@
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.95;
+}
+
+/* Feedback Section */
+.feedback-section {
+  background: white;
+  padding: 4rem 2rem;
+}
+
+.feedback-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.feedback-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1a202c;
+}
+
+.feedback-subtitle {
+  font-size: 1.125rem;
+  color: #718096;
+  margin-bottom: 2rem;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-textarea {
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.feedback-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.feedback-submit {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.feedback-success {
+  background: #48bb78;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Footer */
@@ -306,6 +427,26 @@
   }
 
   .cta-subtitle {
+    font-size: 1rem;
+  }
+
+  .value-prop-title {
+    font-size: 2rem;
+  }
+
+  .value-prop-text {
+    font-size: 1rem;
+  }
+
+  .trust-signals {
+    gap: 2rem;
+  }
+
+  .feedback-title {
+    font-size: 1.75rem;
+  }
+
+  .feedback-subtitle {
     font-size: 1rem;
   }
 }
