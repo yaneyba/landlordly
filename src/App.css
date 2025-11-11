@@ -759,31 +759,442 @@ button:disabled {
   color: var(--danger-color);
 }
 
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.mobile-menu-button:hover {
+  background-color: var(--bg-color);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 24px;
+  height: 18px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
+
+/* Tablet and below (1024px) */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 1.5rem;
   }
 
+  .stats-grid,
+  .alerts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .properties-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* Tablet and Mobile (768px) */
+@media (max-width: 768px) {
+  /* Show mobile menu button */
+  .mobile-menu-button {
+    display: block;
+  }
+
+  /* Hide sidebar by default on mobile */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  .mobile-overlay {
+    display: block;
+  }
+
+  /* Adjust main content */
   .main-content {
     margin-left: 0;
+    padding: 1rem;
+    padding-top: 4rem;
   }
 
+  /* Page header */
   .page-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  /* Stats and alerts grid */
+  .stats-grid,
+  .alerts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Properties grid */
+  .properties-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Tenant details */
+  .detail-label {
+    min-width: 120px;
+  }
+
+  /* Forms */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .property-form,
+  .tenant-form {
+    padding: 1.5rem;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 85vh;
+  }
+
+  .modal-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Tables - Add horizontal scroll */
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table table {
+    width: 100%;
+    min-width: 600px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem;
+    font-size: 0.813rem;
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  .property-actions,
+  .tenant-actions {
+    flex-direction: column;
+  }
+
+  .property-actions button,
+  .tenant-actions button {
+    width: 100%;
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: 3rem 1rem;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Small Mobile (480px) */
+@media (max-width: 480px) {
+  /* Further reduce padding */
+  .main-content {
+    padding: 0.75rem;
+    padding-top: 3.5rem;
+  }
+
+  /* Typography adjustments */
+  .page-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  /* Stat cards */
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-content h3 {
+    font-size: 0.75rem;
+  }
+
+  /* Alert cards */
+  .alert-card {
+    padding: 1rem;
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+  }
+
+  .alert-value {
+    font-size: 1.5rem;
+  }
+
+  /* Property cards */
+  .property-card {
+    padding: 1rem;
+  }
+
+  .property-header h3 {
+    font-size: 1.125rem;
+    margin-right: 5rem;
+  }
+
+  .property-status {
+    font-size: 0.688rem;
+    padding: 0.188rem 0.5rem;
+  }
+
+  .rent-amount {
+    font-size: 1.25rem;
+  }
+
+  .property-description {
+    font-size: 0.813rem;
+  }
+
+  /* Tenant cards */
+  .tenant-card {
+    padding: 1rem;
+  }
+
+  .tenant-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .tenant-info h3 {
+    font-size: 1.125rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .detail-label {
+    min-width: auto;
+    font-weight: 600;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 260px;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-icon {
+    font-size: 1.125rem;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal {
+    border-radius: 12px;
+    max-height: 90vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.125rem;
+  }
+
+  .property-form,
+  .tenant-form {
+    padding: 1rem;
+  }
+
+  .form-section h3 {
+    font-size: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.813rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 0.813rem;
+    padding: 0.5rem;
+  }
+
+  .form-actions {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  /* Tables */
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+  }
+
+  /* Button sizing for touch targets */
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    min-height: 44px;
+    font-size: 0.813rem;
+  }
+
+  .btn-small {
+    min-height: 36px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-button {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.625rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .main-content {
+    padding: 0.5rem;
+    padding-top: 3rem;
+  }
+
+  .sidebar {
+    width: 240px;
   }
 
   .stats-grid,
   .alerts-grid,
   .properties-grid {
-    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
+  .property-specs {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
   }
 }
