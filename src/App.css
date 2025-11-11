@@ -828,7 +828,30 @@ button:disabled {
 
 /* Tablet and below (1024px) */
 @media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    padding: 1.5rem 0;
+  }
+
+  .sidebar-header {
+    padding: 0 1rem 1.5rem;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
   .main-content {
+    margin-left: var(--sidebar-width);
     padding: 1.5rem;
   }
 
@@ -843,8 +866,72 @@ button:disabled {
   }
 }
 
-/* Tablet and Mobile (768px) */
-@media (max-width: 768px) {
+/* Tablet Portrait (768px - 900px) */
+@media (max-width: 900px) {
+  :root {
+    --sidebar-width: 200px;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    padding: 1.25rem 0;
+  }
+
+  .sidebar-header {
+    padding: 0 1rem 1.25rem;
+  }
+
+  .app-title {
+    font-size: 1.125rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .nav-link {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.813rem;
+  }
+
+  .nav-icon {
+    font-size: 1.125rem;
+    margin-right: 0.5rem;
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width);
+    padding: 1.25rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .stats-grid,
+  .alerts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tables - Add horizontal scroll */
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table table {
+    width: 100%;
+    min-width: 600px;
+  }
+}
+
+/* Mobile and Small Tablets (below 768px) */
+@media (max-width: 767px) {
   /* Show mobile menu button */
   .mobile-menu-button {
     display: block;
@@ -860,6 +947,29 @@ button:disabled {
     z-index: 1000;
     transition: left 0.3s ease-in-out;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem 0;
+  }
+
+  .sidebar-header {
+    padding: 0 1.5rem 2rem;
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .nav-link {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .nav-icon {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
   }
 
   .sidebar.mobile-open {
