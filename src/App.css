@@ -35,6 +35,8 @@ body {
 .app {
   display: flex;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Sidebar */
@@ -149,6 +151,9 @@ body {
   flex: 1;
   padding: 2rem;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Page Header */
@@ -174,15 +179,27 @@ body {
 }
 
 /* Dashboard */
+.dashboard {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .dashboard-header {
   margin-bottom: 2rem;
 }
 
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 .stat-card {
@@ -195,6 +212,8 @@ body {
   gap: 1rem;
   text-decoration: none;
   color: inherit;
+  min-width: 0;
+  width: 100%;
 }
 
 .stat-card:hover {
@@ -204,6 +223,12 @@ body {
 
 .stat-icon {
   font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .stat-content h3 {
@@ -211,6 +236,8 @@ body {
   font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .stat-value {
@@ -218,14 +245,23 @@ body {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .stat-detail {
   font-size: 0.75rem;
   color: var(--text-secondary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Alerts Section */
+.alerts-section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .alerts-section h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -234,8 +270,9 @@ body {
 
 .alerts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  width: 100%;
 }
 
 .alert-card {
@@ -249,6 +286,8 @@ body {
   text-decoration: none;
   color: inherit;
   transition: all 0.2s;
+  min-width: 0;
+  width: 100%;
 }
 
 .alert-card:hover {
@@ -270,6 +309,12 @@ body {
 
 .alert-icon {
   font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.alert-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .alert-content h3 {
@@ -277,17 +322,23 @@ body {
   font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .alert-value {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .alert-detail {
   font-size: 0.75rem;
   color: var(--text-secondary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Properties Grid */
@@ -1072,7 +1123,7 @@ button:disabled {
 
   .stats-grid,
   .alerts-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem;
   }
 
@@ -1129,7 +1180,7 @@ button:disabled {
 
   .stats-grid,
   .alerts-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 
   .properties-grid {
@@ -1150,6 +1201,14 @@ button:disabled {
 
   .modal {
     max-width: 600px;
+  }
+}
+
+/* Medium screens - prevent squeezing in mid-range */
+@media (max-width: 950px) and (min-width: 768px) {
+  .stats-grid,
+  .alerts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   }
 }
 
@@ -1225,7 +1284,7 @@ button:disabled {
   /* Stats and alerts grid */
   .stats-grid,
   .alerts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
   }
@@ -1383,31 +1442,43 @@ button:disabled {
   /* Stat cards */
   .stat-card {
     padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .stat-icon {
     font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   .stat-content h3 {
-    font-size: 0.75rem;
+    font-size: 0.813rem;
   }
 
   /* Alert cards */
   .alert-card {
     padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .alert-icon {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .alert-value {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  /* Stats and alerts - ensure single column on small screens */
+  .stats-grid,
+  .alerts-grid {
+    grid-template-columns: 1fr;
   }
 
   /* Property cards */
@@ -1570,7 +1641,11 @@ button:disabled {
   }
 
   .stats-grid,
-  .alerts-grid,
+  .alerts-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
   .properties-grid {
     gap: 0.75rem;
   }
