@@ -461,10 +461,17 @@ body {
   gap: 0.5rem;
 }
 
+/* Tenants Page */
+.tenants-page {
+  max-width: 100%;
+  width: 100%;
+}
+
 /* Tenants List */
 .tenants-list {
   display: grid;
   gap: 1rem;
+  width: 100%;
 }
 
 .tenant-card {
